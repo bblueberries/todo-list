@@ -11,15 +11,6 @@ type FormProps = {
   availableTags: Tag[];
 };
 
-const customStyles = {
-  control: (base: any, state: any) => ({
-    ...base,
-    height: "2.5rem",
-    minHeight: "2.5rem",
-    borderColor: "rgb(209 213 219)",
-  }),
-};
-
 export default function Form({ onSubmit, onAddTag, availableTags }: FormProps) {
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLTextAreaElement>(null);
