@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <>
-      <Lists />
+      <Lists availableTags={tags} />
     </>
   );
 }
