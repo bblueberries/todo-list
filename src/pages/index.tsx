@@ -2,6 +2,7 @@ import { ListData, RawList, Tag } from "@/constants/type";
 import { useStateContext } from "@/contexts/StateContext";
 import { useLocalStorage } from "@/components/useLocalStorage";
 import { useMemo } from "react";
+import { Lists } from "@/components/Lists";
 
 export default function Home() {
   // const [lists, setLists] = useLocalStorage<RawList[]>("NOTES", []);
@@ -22,7 +23,7 @@ export default function Home() {
 
   return (
     <>
-      <div>HOME</div>
+      <Lists />
     </>
   );
 }

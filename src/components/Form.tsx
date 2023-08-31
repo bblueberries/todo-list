@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { FormEvent, useRef, useState } from "react";
 import Creatable from "react-select/creatable";
 import { v4 as uuidV4 } from "uuid";
+import { useRouter } from "next/router";
 
 type FormProps = {
   onSubmit: (data: ListData) => void;
@@ -23,6 +24,7 @@ export default function Form({ onSubmit, onAddTag, availableTags }: FormProps) {
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLTextAreaElement>(null);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const router = useRouter();
 
   const customStyles = {
     control: (base: any, state: any) => ({
@@ -41,6 +43,8 @@ export default function Form({ onSubmit, onAddTag, availableTags }: FormProps) {
       body: bodyRef.current!.value,
       tags: selectedTags,
     });
+
+    router.back();
   }
 
   return (

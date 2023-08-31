@@ -1,14 +1,12 @@
 import NoteForm from "@/components/Form";
 import { ListData, RawList, Tag } from "@/constants/type";
 import { useStateContext } from "@/contexts/StateContext";
-import { type } from "os";
 import React from "react";
 import { v4 as uuidV4 } from "uuid";
 
 export default function NewNote() {
   const { lists, setLists, tags, setTags } = useStateContext();
   type setLists = (lists: RawList[]) => void;
-
   function onCreateList({ tags, ...data }: ListData) {
     setLists((prevLists: any) => {
       const newList: RawList = {

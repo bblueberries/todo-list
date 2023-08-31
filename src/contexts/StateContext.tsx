@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 
 type ContextValue = {
   lists: RawList[];
-  setLists: (lists: any) => void;
+  setLists: (lists: any) => void; // confusing
   tags: Tag[];
   setTags: (tags: any) => void;
 };
