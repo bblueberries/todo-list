@@ -121,6 +121,15 @@ function ListCard({ id, title, tags }: listCardProps) {
         <div className="flex flex-col items-center p-4">
           <p className="text-2xl font-semibold">{title}</p>
         </div>
+        {tags.length > 0 && (
+          <div className="flex justify-center gap-2">
+            {tags.map((tag) => (
+              <div className="border p-1 rounded-md text-white bg-blue-500 font-semibold text-sm">
+                {tag.label}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </Link>
   );
