@@ -101,7 +101,7 @@ export function ShowLists({ availableTags, lists }: ListsProps) {
               />
             </div>
           </div>
-          <div className=" grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-col-4 gap-4">
+          <div className=" grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-col-4 gap-6 mt-5 px-5 lg:px-10">
             {filteredLists.map((list) => (
               <div key={list.id}>
                 <ListCard id={list.id} title={list.title} tags={list.tags} />
@@ -117,7 +117,11 @@ export function ShowLists({ availableTags, lists }: ListsProps) {
 function ListCard({ id, title, tags }: listCardProps) {
   return (
     <Link href={`/${id}`}>
-      <div className=" h-32 w-full border "></div>
+      <div className=" h-40 w-full border rounded-xl hover:translate-y-[-5px] hover:shadow-md shadow-black transition-transform-shadow ease-in-out duration-200 ">
+        <div className="flex flex-col items-center p-4">
+          <p className="text-2xl font-semibold">{title}</p>
+        </div>
+      </div>
     </Link>
   );
 }
