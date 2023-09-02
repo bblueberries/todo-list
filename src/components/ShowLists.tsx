@@ -124,7 +124,10 @@ function ListCard({ id, title, tags }: listCardProps) {
         {tags.length > 0 && (
           <div className="flex justify-center gap-2">
             {tags.map((tag) => (
-              <div className="border p-1 rounded-md text-white bg-blue-500 font-semibold text-sm">
+              <div
+                className="border p-1 rounded-md text-white bg-blue-500 font-semibold text-sm"
+                key={tag.id}
+              >
                 {tag.label}
               </div>
             ))}
