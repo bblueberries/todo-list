@@ -8,19 +8,7 @@ import { list } from "postcss";
 export default function Home() {
   // const [lists, setLists] = useLocalStorage<RawList[]>("NOTES", []);
   // const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", []);
-  const { lists, setLists, tags, setTags } = useStateContext();
-
-  const listsWithTags = useMemo(() => {
-    if (!lists || !tags) {
-      return []; // Handle the case when lists or tags are not defined
-    }
-    return lists.map((list) => {
-      return {
-        ...list,
-        tags: tags.filter((tag) => list.tagIds.includes(tag.id)),
-      };
-    });
-  }, [lists, tags]);
+  const { lists, setLists, tags, setTags, listsWithTags } = useStateContext();
 
   return (
     <>
