@@ -116,7 +116,7 @@ export function ShowLists({ availableTags, lists }: ListsProps) {
 
 function ListCard({ id, title, tags }: listCardProps) {
   return (
-    <Link href={`/${id}`}>
+    <Link href={`/Lists/${id}`}>
       <div className=" h-40 w-full border rounded-xl hover:translate-y-[-5px] hover:shadow-md shadow-black transition-transform-shadow ease-in-out duration-200 ">
         <div className="flex flex-col items-center p-4">
           <p className="text-2xl font-semibold">{title}</p>
