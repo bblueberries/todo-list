@@ -42,7 +42,7 @@ export default function ListContent({ thisList, id }: ListContentProps) {
               </div>
             </div>
             <div className="flex gap-2 justify-center items-center">
-              <Link href={"/${id}/edit"}>
+              <Link href={`/${id}/edit`}>
                 <button className="rounded border border-gray-400 p-2 px-3  bg-blue-500 hover:bg-blue-600 text-white text-sm xl:text-base">
                   Edit
                 </button>
@@ -59,7 +59,9 @@ export default function ListContent({ thisList, id }: ListContentProps) {
               </Link>
             </div>
           </div>
-          <ReactMarkdown>{thisList?.body}</ReactMarkdown>
+          <div className="mt-6">
+            <ReactMarkdown>{thisList?.body}</ReactMarkdown>{" "}
+          </div>
         </div>
       </>
     )
