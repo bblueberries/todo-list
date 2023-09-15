@@ -4,7 +4,7 @@ import { useStateContext } from "@/contexts/StateContext";
 import React from "react";
 import { v4 as uuidV4 } from "uuid";
 
-export default function NewNote() {
+export default function NewList() {
   const { lists, setLists, tags, setTags } = useStateContext();
   type setLists = (lists: RawList[]) => void;
   function onCreateList({ tags, ...data }: ListData) {
