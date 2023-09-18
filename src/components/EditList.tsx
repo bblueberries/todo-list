@@ -1,14 +1,32 @@
 import NoteForm from "@/components/Form";
 import { List, ListData, RawList, Tag } from "@/constants/type";
 import { useStateContext } from "@/contexts/StateContext";
-import React from "react";
-import { v4 as uuidV4 } from "uuid";
-type EditListProps = {
-  thisList: List;
-};
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 
-export default function EditList({ thisList }: EditListProps) {
+type editListProps = {
+  id: string;
+};
+export async function getServerSideProps(context: any) {
+  const id = context.query.id;
+
+  return {
+    props: { id },
+  };
+}
+
+export default function EditList({ id }: editListProps) {
   const { lists, setLists, tags, setTags } = useStateContext();
+  const router = useRouter();
+  const { listsWithTags } = useStateContext();
+  const thisList = listsWithTags.find((list) => list.id === id);
+
+  useEffect(() => {
+    if (!id || typeof id !== "string" || thisList === undefined) {
+      // router.push("/");
+    }
+  }, [thisList, router]);
+
   type setLists = (lists: RawList[]) => void;
 
   function onUpdateList(id: string, { tags, ...data }: ListData) {
@@ -34,8 +52,10 @@ export default function EditList({ thisList }: EditListProps) {
     <>
       <p className="text-4xl font-bold px-6 xl:px-48 mt-6 mb-14">Edit List</p>
       <NoteForm
-        thisList={thisList}
-        onSubmit={(data) => onUpdateList(thisList.id, data)}
+        title={thisList?.title}
+        body={thisList?.body}
+        tags={thisList?.tags}
+        onSubmit={(data) => onUpdateList(thisList?.id || "", data)}
         onAddTag={addTag}
         availableTags={tags}
       />

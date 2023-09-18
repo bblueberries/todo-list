@@ -6,34 +6,35 @@ import { v4 as uuidV4 } from "uuid";
 import { useRouter } from "next/router";
 
 type FormProps = {
-  thisList?: List;
   onSubmit: (data: ListData) => void;
   onAddTag: (data: Tag) => void;
   availableTags: Tag[];
-};
+} & Partial<ListData>;
 
 export default function Form({
   onSubmit,
   onAddTag,
   availableTags,
-  thisList,
+  title = "",
+  body = "",
+  tags = [],
 }: FormProps) {
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLTextAreaElement>(null);
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const [selectedTags, setSelectedTags] = useState<Tag[]>(tags);
   const router = useRouter();
 
-  useEffect(() => {
-    if (thisList) {
-      if (titleRef.current) {
-        titleRef.current.value = thisList.title;
-      }
-      if (bodyRef.current) {
-        bodyRef.current.value = thisList.body;
-      }
-      setSelectedTags(thisList.tags);
-    }
-  }, [thisList]);
+  // useEffect(() => {
+  //   if (thisList) {
+  //     if (titleRef.current) {
+  //       titleRef.current.value = thisList.title;
+  //     }
+  //     if (bodyRef.current) {
+  //       bodyRef.current.value = thisList.body;
+  //     }
+  //     setSelectedTags(thisList.tags);
+  //   }
+  // }, [thisList]);
 
   const customStyles = {
     control: (base: any, state: any) => ({
@@ -68,6 +69,7 @@ export default function Form({
             <input
               className=" w-full border border-gray-300 hover:border-gray-400 focus:hover:border-blue-500 focus:outline-blue-500 h-10 rounded px-3 outline-offset-[1.5px]"
               ref={titleRef}
+              defaultValue={title}
               required
             />
           </div>
@@ -110,6 +112,7 @@ export default function Form({
             className="border border-gray-300 rounded w-full focus:outline-blue-500 p-3  focus:hover:border-blue-500 outline-offset-[1.5px]"
             rows={10}
             ref={bodyRef}
+            defaultValue={body}
             required
           />
         </div>
