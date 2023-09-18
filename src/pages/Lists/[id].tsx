@@ -20,13 +20,10 @@ export async function getServerSideProps(context: any) {
 }
 export default function ListPage({ id }: ListPageProps) {
   const router = useRouter();
-  // const { listsWithTags } = useStateContext();
-  // const { id } = router.query;
-  // const thisList = listsWithTags.find((list) => list.id === id);
 
   const { listsWithTags } = useStateContext();
   const thisList = listsWithTags.find((list) => list.id === id);
-  console.log(id);
+  // console.log(id);
   useEffect(() => {
     if (!id || typeof id !== "string" || thisList === undefined) {
       router.push("/");

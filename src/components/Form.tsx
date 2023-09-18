@@ -1,21 +1,39 @@
-import { ListData, Tag } from "@/constants/type";
+import { List, ListData, Tag } from "@/constants/type";
 import Link from "next/link";
-import React, { FormEvent, useRef, useState } from "react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import Creatable from "react-select/creatable";
 import { v4 as uuidV4 } from "uuid";
 import { useRouter } from "next/router";
 
 type FormProps = {
+  thisList?: List;
   onSubmit: (data: ListData) => void;
   onAddTag: (data: Tag) => void;
   availableTags: Tag[];
 };
 
-export default function Form({ onSubmit, onAddTag, availableTags }: FormProps) {
+export default function Form({
+  onSubmit,
+  onAddTag,
+  availableTags,
+  thisList,
+}: FormProps) {
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLTextAreaElement>(null);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const router = useRouter();
+
+  useEffect(() => {
+    if (thisList) {
+      if (titleRef.current) {
+        titleRef.current.value = thisList.title;
+      }
+      if (bodyRef.current) {
+        bodyRef.current.value = thisList.body;
+      }
+      setSelectedTags(thisList.tags);
+    }
+  }, [thisList]);
 
   const customStyles = {
     control: (base: any, state: any) => ({
