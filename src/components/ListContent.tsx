@@ -1,6 +1,7 @@
-import { List } from "@/constants/type";
+import { List, RawList } from "@/constants/type";
 import { useStateContext } from "@/contexts/StateContext";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
@@ -13,6 +14,7 @@ type ListContentProps = {
 export default function ListContent({ thisList, id }: ListContentProps) {
   // console.log(id);
   const { setLists } = useStateContext();
+  const router = useRouter();
   // const thisList = listsWithTags.find((list) => list.id === id);
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
@@ -20,8 +22,8 @@ export default function ListContent({ thisList, id }: ListContentProps) {
   }, []);
 
   function onDeleteList(id: string) {
-    setLists((prevLists: List[]) => {
-      return prevLists?.filter((list: List) => list.id !== id);
+    setLists((prevLists: RawList[]) => {
+      return prevLists?.filter((list: RawList) => list.id !== id);
     });
   }
   return (
@@ -54,7 +56,13 @@ export default function ListContent({ thisList, id }: ListContentProps) {
                 </button>
               </Link>
 
-              <button className="rounded border border-red-300 p-2   hover:bg-gray-100 text-red-400 text-sm xl:text-base">
+              <button
+                className="rounded border border-red-300 p-2   hover:bg-gray-100 text-red-400 text-sm xl:text-base"
+                onClick={() => {
+                  onDeleteList(id);
+                  router.push("/");
+                }}
+              >
                 Delete
               </button>
               <Link href={"/"}>
