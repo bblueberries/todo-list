@@ -51,13 +51,13 @@ export default function ListContent({ thisList, id }: ListContentProps) {
             </div>
             <div className="flex gap-2 justify-center items-center">
               <Link href={`/${id}/edit`}>
-                <button className="rounded border border-gray-400 p-2 px-3  bg-blue-500 hover:bg-blue-600 text-white text-sm xl:text-base">
+                <button className="rounded border border-blue-500 p-2 px-3  bg-blue-500 hover:bg-blue-600 text-white text-sm xl:text-base">
                   Edit
                 </button>
               </Link>
 
               <button
-                className="rounded border border-red-300 p-2   hover:bg-gray-100 text-red-400 text-sm xl:text-base"
+                className="rounded border border-red-500 p-2   hover:bg-red-500 text-red-400 hover:text-white text-sm xl:text-base "
                 onClick={() => {
                   onDeleteList(id);
                   router.push("/");
