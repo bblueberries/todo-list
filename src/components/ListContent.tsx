@@ -12,12 +12,18 @@ type ListContentProps = {
 
 export default function ListContent({ thisList, id }: ListContentProps) {
   // console.log(id);
-  // const { listsWithTags } = useStateContext();
+  const { setLists } = useStateContext();
   // const thisList = listsWithTags.find((list) => list.id === id);
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  function onDeleteList(id: string) {
+    setLists((prevLists: List[]) => {
+      return prevLists?.filter((list: List) => list.id !== id);
+    });
+  }
   return (
     // <div>1</div>
     isClient && (

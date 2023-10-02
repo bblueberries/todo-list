@@ -31,7 +31,7 @@ export default function EditList({ id }: editListProps) {
   type setLists = (lists: RawList[]) => void;
 
   function onUpdateList(id: string, { tags, ...data }: ListData) {
-    setLists((prevLists: List[]) => {
+    setLists((prevLists: RawList[]) => {
       return prevLists.map((list) => {
         if (id === list.id) {
           return {
@@ -47,7 +47,7 @@ export default function EditList({ id }: editListProps) {
   }
 
   function addTag(tag: Tag) {
-    setTags((prev: any) => [...prev, tag]);
+    setTags((prev: Tag[]) => [...prev, tag]);
   }
   return (
     isClient && (
