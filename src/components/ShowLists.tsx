@@ -2,6 +2,8 @@ import { List, Tag } from "@/constants/type";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import ReactSelect from "react-select";
+import TagsModal from "./TagsModal";
+
 const customStyles = {
   control: (base: any, state: any) => ({
     ...base,
@@ -109,6 +111,7 @@ export function ShowLists({ availableTags, lists }: ListsProps) {
             ))}
           </div>
         </div>
+        <TagsModal availableTags={availableTags} />
       </>
     );
   } else return <></>;
