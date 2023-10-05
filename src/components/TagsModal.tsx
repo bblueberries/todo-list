@@ -1,11 +1,32 @@
 import { Tag } from "@/constants/type";
+import { useStateContext } from "@/contexts/StateContext";
 import React from "react";
 
 type tagsModalProp = {
   availableTags: Tag[];
 };
-export default function Modal({ availableTags }: tagsModalProp) {
+
+export default function Modal({}: tagsModalProp) {
+  const { tags, setTags } = useStateContext();
   const [showModal, setShowModal] = React.useState(false);
+
+  function deleteTags(id: string) {
+    setTags((prev: Tag[]) => {
+      return prev.filter((tag) => tag.id !== id);
+    });
+  }
+
+  function updateTags(id: string, label: string) {
+    setTags((prev: Tag[]) => {
+      return prev.map((tag) => {
+        if (tag.id === id) {
+          return { ...tag, label };
+        } else {
+          return tag;
+        }
+      });
+    });
+  }
   return (
     <>
       <button
@@ -35,14 +56,18 @@ export default function Modal({ availableTags }: tagsModalProp) {
                 </div>
                 {/*body*/}
                 <div className="relative p-6 xl:p-8 flex-auto w-full ">
-                  {availableTags.map((tag) => (
+                  {tags?.map((tag) => (
                     <div className="flex gap-2 mb-2 xl:mb-4" key={tag.id}>
                       <input
                         type="text"
                         value={tag.label}
                         className=" border border-gray-300 hover:border-gray-400 focus:outline-none rounded p-2 w-full"
+                        onChange={(e) => updateTags(tag.id, e.target.value)}
                       />
-                      <button className="text-red-500 border border-red-500 rounded px-3.5 hover:bg-red-500 hover:text-white">
+                      <button
+                        className="text-red-500 border border-red-500 rounded px-3.5 hover:bg-red-500 hover:text-white"
+                        onClick={() => deleteTags(tag.id)}
+                      >
                         ×
                       </button>
                     </div>
