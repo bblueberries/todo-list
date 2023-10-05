@@ -33,7 +33,9 @@ export default function ListContent({ thisList, id }: ListContentProps) {
         <div className="p-5 xl:py-8 xl:px-20 flex-col">
           <div className="flex justify-between">
             <div className="flex flex-col gap-1">
-              <h1 className=" text-4xl font-bold">{thisList?.title}</h1>
+              <h1 className=" text-3xl xl:text-4xl font-bold">
+                {thisList?.title}
+              </h1>
               <div>
                 {thisList?.tags.length > 0 && (
                   <div className="flex gap-1 xl:gap-2">
