@@ -63,9 +63,11 @@ export default function Form({
         className="flex justify-center flex-col px-6 xl:px-48"
         onSubmit={handleSubmit}
       >
-        <div className="flex gap-4 text-sm">
-          <div className=" w-6/12">
-            <p className=" text-xl mb-2">Title</p>
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 text-sm">
+          <div>
+            <p className="text-base font-normal xl:text-xl xl:font-normal mb-2">
+              Title
+            </p>
             <input
               className=" w-full border border-gray-300 hover:border-gray-400 focus:hover:border-blue-500 focus:outline-blue-500 h-10 rounded px-3 outline-offset-[1.5px]"
               ref={titleRef}
@@ -73,8 +75,10 @@ export default function Form({
               required
             />
           </div>
-          <div className=" w-6/12">
-            <p className="text-xl mb-2">Tag</p>
+          <div>
+            <p className="text-base font-normal xl:text-xl xl:font-normal mb-2">
+              Tag
+            </p>
             <Creatable
               isMulti
               styles={customStyles}
@@ -107,7 +111,7 @@ export default function Form({
           </div>
         </div>
         <div className="mt-6">
-          <p className=" text-xl mb-2">Body</p>
+          <p className=" text-md mb-2">Body</p>
           <textarea
             className="border border-gray-300 rounded w-full focus:outline-blue-500 p-3  focus:hover:border-blue-500 outline-offset-[1.5px]"
             rows={10}

@@ -52,7 +52,6 @@ export default function EditList({ id }: editListProps) {
   return (
     isClient && (
       <>
-        (
         <p className="text-4xl font-bold px-6 xl:px-48 mt-6 mb-14">Edit List</p>
         <NoteForm
           title={thisList?.title}
@@ -62,7 +61,6 @@ export default function EditList({ id }: editListProps) {
           onAddTag={addTag}
           availableTags={tags}
         />
-        )
       </>
     )
   );
