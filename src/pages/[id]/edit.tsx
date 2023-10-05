@@ -16,9 +16,9 @@ export async function getServerSideProps(context: any) {
 }
 
 export default function EditList({ id }: editListProps) {
-  const { lists, setLists, tags, setTags } = useStateContext();
+  const { setLists, tags, setTags, listsWithTags } = useStateContext();
   const router = useRouter();
-  const { listsWithTags } = useStateContext();
+
   const thisList = listsWithTags.find((list) => list.id === id);
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {

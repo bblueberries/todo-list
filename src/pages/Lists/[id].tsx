@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import ListContent from "@/components/ListContent";
 type ListPageProps = {
-  thisList: List;
   id: string;
 };
 export async function getServerSideProps(context: any) {
@@ -31,7 +30,6 @@ export default function ListPage({ id }: ListPageProps) {
   }, [router]);
   return (
     <>
-      {/* <div>{thisList?.title}</div> */}
       <ListContent id={id} thisList={thisList as List} />
     </>
   );
