@@ -57,9 +57,7 @@ export function ShowLists() {
                   Create
                 </button>
               </Link>
-              <button className="rounded border p-2 border-gray-400 text-gray-400 hover:bg-slate-100">
-                Edit Tags
-              </button>
+              <EditTagButton />
             </div>{" "}
           </div>
           <div className=" grid grid-cols-1  xl:grid-cols-2 mt-5 mb-4 xl:mb-0 p-2 gap-4">
@@ -114,7 +112,6 @@ export function ShowLists() {
             ))}
           </div>
         </div>
-        <EditTagButton />
       </>
     );
   } else return <></>;
