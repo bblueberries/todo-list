@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import ReactSelect from "react-select";
 import TagsModal from "./TagsModal";
+import { useStateContext } from "@/contexts/StateContext";
 
 const customStyles = {
   control: (base: any, state: any) => ({
@@ -13,18 +14,16 @@ const customStyles = {
     whiteSpace: "initial",
   }),
 };
-type ListsProps = {
-  availableTags: Tag[];
-  lists: List[];
-};
+
 type listCardProps = {
   id: string;
   title: string;
   tags: Tag[];
 };
-export function ShowLists({ availableTags, lists }: ListsProps) {
+export function ShowLists() {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState<string>("");
+  const { tags, listsWithTags } = useStateContext();
 
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
@@ -32,8 +31,8 @@ export function ShowLists({ availableTags, lists }: ListsProps) {
   }, []);
 
   const filteredLists = useMemo(() => {
-    if (lists) {
-      return lists.filter((list) => {
+    if (listsWithTags) {
+      return listsWithTags.filter((list) => {
         return (
           (title === "" ||
             list.title.toLowerCase().includes(title.toLowerCase())) &&
@@ -45,7 +44,7 @@ export function ShowLists({ availableTags, lists }: ListsProps) {
       });
     }
     return [];
-  }, [title, selectedTags, lists]);
+  }, [title, selectedTags, listsWithTags]);
   if (isClient) {
     return (
       <>
@@ -93,8 +92,8 @@ export function ShowLists({ availableTags, lists }: ListsProps) {
                   );
                 }}
                 options={
-                  availableTags
-                    ? availableTags.map((tag) => ({
+                  tags
+                    ? tags.map((tag) => ({
                         label: tag.label,
                         value: tag.id,
                       }))
@@ -111,7 +110,7 @@ export function ShowLists({ availableTags, lists }: ListsProps) {
             ))}
           </div>
         </div>
-        <TagsModal availableTags={availableTags} />
+        <TagsModal />
       </>
     );
   } else return <></>;

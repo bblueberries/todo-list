@@ -2,11 +2,7 @@ import { Tag } from "@/constants/type";
 import { useStateContext } from "@/contexts/StateContext";
 import React from "react";
 
-type tagsModalProp = {
-  availableTags: Tag[];
-};
-
-export default function Modal({}: tagsModalProp) {
+export default function Modal() {
   const { tags, setTags } = useStateContext();
   const [showModal, setShowModal] = React.useState(false);
 
