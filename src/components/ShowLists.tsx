@@ -50,7 +50,7 @@ export function ShowLists() {
       <>
         <div className="flex flex-col p-4 xl:px-20 xl:py-16">
           <div className="flex">
-            <p className="p-2 font-bold text-xl xl:text-3xl">Lists</p>
+            <p className="p-2 font-bold text-2xl xl:text-3xl">Lists</p>
             <div className="flex gap-3 ml-auto  text-base xl:text-xl font-light">
               <Link href="/new">
                 <button className="rounded border border-gray-400 p-3   bg-blue-500 hover:bg-blue-600 text-white">
@@ -62,10 +62,12 @@ export function ShowLists() {
               </button>
             </div>{" "}
           </div>
-          <div className="flex mt-5 p-2 gap-4">
-            <div className=" w-6/12">
+          <div className=" grid grid-cols-1  xl:grid-cols-2 mt-5 mb-4 xl:mb-0 p-2 gap-4">
+            <div className="">
               <div>
-                <p className=" text-xl mb-2">Title</p>
+                <p className=" text-base font-light xl:text-xl xl:font-normal  mb-2">
+                  Title
+                </p>
                 <input
                   className=" w-full border border-gray-300 hover:border-gray-400 focus:hover:border-blue-500 focus:outline-blue-500 h-10 rounded px-3 outline-offset-[1.5px]"
                   value={title}
@@ -73,8 +75,10 @@ export function ShowLists() {
                 />
               </div>
             </div>
-            <div className=" w-6/12">
-              <p className=" text-xl mb-2">Tags</p>
+            <div className="">
+              <p className="text-base font-light xl:text-xl xl:font-normal mb-2">
+                Tags
+              </p>
               <ReactSelect
                 isMulti
                 styles={customStyles}

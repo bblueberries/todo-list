@@ -27,7 +27,7 @@ type Prop = {
 };
 
 export function StateProvider({ children }: Prop) {
-  const [lists, setLists] = useLocalStorage<RawList[]>("NOTES", []);
+  const [lists, setLists] = useLocalStorage<RawList[]>("LISTS", []);
   const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", []);
 
   const listsWithTags = useMemo(() => {
