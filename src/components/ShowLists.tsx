@@ -2,7 +2,7 @@ import { List, Tag } from "@/constants/type";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import ReactSelect from "react-select";
-import TagsModal from "./TagsModal";
+import EditTagButton from "./EditTagButton";
 import { useStateContext } from "@/contexts/StateContext";
 
 const customStyles = {
@@ -114,7 +114,7 @@ export function ShowLists() {
             ))}
           </div>
         </div>
-        <TagsModal />
+        <EditTagButton />
       </>
     );
   } else return <></>;
